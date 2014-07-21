@@ -2,7 +2,7 @@
 * EMPTYDIR (GRACEFUL, RECURSIVE REMOVAL)
 *    Deletes all files recursively leaving directories.
 * AUTHOR:     GOCHO MUGO <https://github.com/GochoMugo>
-* LICENSE:   MIT
+* LICENSE:     MIT
 */
 module.exports = {
     emptyDirs: emptyDirs,
@@ -11,8 +11,8 @@ module.exports = {
 };
 
 var fs = require("fs"),
-    Path = require("path"),
-    child_process = require("child_process");
+      Path = require("path"),
+      child_process = require("child_process");
 
 /*
 * STRATEGY:
@@ -35,7 +35,8 @@ var fs = require("fs"),
 *    Permission denied while deleting files. ::
 *        If node has no permission to execute a directory, it is ignored.
 *        No files underneath it will be removed.
-*        Files and Directories we can not delete we pass the err to the callback
+*        Files and Directories we can not delete we pass the err to the
+*        callback
 */
 function emptyDirs(path, callback) {
     if (!callback) {
@@ -70,6 +71,7 @@ function emptyDirs(path, callback) {
     });
 }
 
+
 /*
 * ASYNCHRONOUS - SILENT
 *
@@ -102,7 +104,8 @@ function emptyDir(path, callback) {
 * On success, returns an empty list
 * On Error, returns a list of all the errors that occurred.
 *
-* The idea is to NOT stop until we delete the maximum number of files we can.
+* The idea is to NOT stop until we delete the maximum number of files
+* we can.
 */
 function emptyDirsSync(path) {
     var results = [];

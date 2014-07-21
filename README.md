@@ -4,6 +4,8 @@ You now get to delete files recursively while preserving the directories.
 
 ## installation ##
 
+You require [npm][npm] to install/download this module.
+
 `npm install emptydir`
 
 If you wish to install it globally on your machine:
@@ -19,7 +21,8 @@ If you wish to install it globally on your machine:
     /* 
     * Assuming the variable 'my_path' holds a path to
     * a folder on your machine
-    * /
+    */
+
     emptydir.emptyDir(my_path, function (errs) {
         /*errs will be an array with all the errors that occurred*/
         if (errs) {
@@ -28,15 +31,20 @@ If you wish to install it globally on your machine:
             });
         }
     });
+
     emptydir.emptyDirs(my_path, function (err, path) {
-        /*callback is called per file being worked on. err is null on success*/
+        /*callback is called per file(and not directory) being worked on.
+        * err is null on success*/
         if (err) {
             console.log("Failed: " + path);
         }
         console.log("Success: " + path);
     });
 
-    /*Synchronous*/
+    /*Synchronous. Returns an array of all the errors that occurred while
+    *working on the files in the directory.
+    * On success, returns an empty array. Thus it is safe to immediately
+    * loop through the errors in the array.*/
     errs = emptydir.emptyDirsSync(my_path);
     errs.forEach(function () {
         console.log(err.path + " failed due to " + err.code);
@@ -47,14 +55,18 @@ If you wish to install it globally on your machine:
 
 By saying working on a file, we mean to try and remove it.
 
+**All** of the methods:
+
+1. If the path passed is a file, it is simply deleted. It's '**not** amust the path points to a directory.
+2. Symbolic links are not dereferenced. They are deleted equally as files.
+
 Any of the **Asynchronous** methods:
 
-1. If the path passed is a file, it is simply deleted. **Not** amust it be a directory.
-2. If a callback is **not** passed, the methods will complete as would have if callback was passed.
+1. If a callback is **not** passed, the methods will complete as would have if callback was passed.
 
 **emptydir.emptyDir(path [, callback])**
 
-1. Callback is called only **once** after the workig on the files is complete.
+1. Callback is called only **once** after the working on the files is complete.
 2. On error, a list of **all** errors occurred during the recursive removal is passed to the callback.
 3. On success, error will be `null`
 
@@ -79,7 +91,7 @@ Any of the **Asynchronous** methods:
 |dependencies|none|
 |last updated|21st July, 2014|
 
-> A different [version][version]?
+<!-- > A different [version][version]?-->
 
 ## contribution ##
 
@@ -91,7 +103,8 @@ Also some geek talk is appreciated at [@MUGO_GOCHO][tweet].
 
 This source code is licensed under the [MIT][MIT] license.
 
+[npm]:https://npmjs.org "Node Package Manager"
 [version]:https://github.com/GochoMugo/emptydir "All Versions"
 [fork]:https://github.com/GochoMugo/emptydir "Fork this repo"
 [tweet]:https://twitter.com/MUGO_GOCHO "Tweet me"
-[MIT]:https://blahblah.com "Read the License"
+[MIT]:https://github.com/GochoMugo/emptydir/blob/master/LICENSE  "Read the License"
