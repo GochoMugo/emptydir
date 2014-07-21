@@ -1,0 +1,27 @@
+﻿{
+    "name":"emptydir",
+    "version":"0.0.0-alpha",
+    "description":"recursively delete files while preserving directories",
+    "homepage":"https://github.com/GochoMugo/emptydir",
+    "license":"MIT",
+    "author":{
+        "name":"Gocho Mugo",
+        "url":"https://gochomugo.github.io"
+    },
+    "keywords":[
+        "delete",
+        "directories",
+        "empty",
+        "files",
+        "graceful",
+        "preserve",
+        "remove",
+        "recursive"
+    ],
+    "bugs":"https://github.com/GochoMugo/emptydir/issues",
+    "repository":{
+        "type":"git",
+        "url":"https://github.com/GochoMugo/emptydir.git"
+    },
+    "main":"emptydir.js"
+}
