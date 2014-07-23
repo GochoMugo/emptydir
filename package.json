@@ -23,5 +23,6 @@
         "type":"git",
         "url":"https://github.com/GochoMugo/emptydir.git"
     },
-    "main":"emptydir.js"
+    "main":"emptydir.js",
+    "dependencies": {}
 }

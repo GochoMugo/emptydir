@@ -67,33 +67,33 @@ errs.forEach(function () {
 
 **All** of the methods:
 
-    1. If the path passed is a file, it is simply deleted. It's '**not** amust the path points to a directory.
-    2. Symbolic links are not dereferenced. They are deleted equally as files.
+1. If the path passed is a file, it is simply deleted. It's '**not** amust the path points to a directory.
+2. Symbolic links are not dereferenced. They are deleted equally as files.
 
 Any of the **Asynchronous** methods:
 
-    1. If a callback is **not** passed, the methods will complete as would have if callback was passed.
+1. If a callback is **not** passed, the methods will complete as would have if callback was passed.
 
 <hr>
 
 **emptydir.emptyDir(path [, callback])**
 
-    1. Callback is called only **once** after the working on the files is complete.
-    2. On error, a list of **all** errors occurred during the recursive removal is passed to the callback.
-    3. On success, error will be `null`
+1. Callback is called only **once** after the working on the files is complete.
+2. On error, a list of **all** errors occurred during the recursive removal is passed to the callback.
+3. On success, error will be `null`
 
 <hr>
 
 **emptydir.emptyDirs(path [, callback])**
 
-    1. The callback is called **each** time a file is worked on.
-    2. **path** of the file worked on is **always** passed as the second argument to the callback on both success and error.
+1. The callback is called **each** time a file is worked on.
+2. **path** of the file worked on is **always** passed as the second argument to the callback on both success and error.
 
 <hr>
 
 **emptydir.emptyDirsSync(path)**
 
-    1. The return value will always be an array. Thus no need to test for that.
+1. The return value will always be an array. Thus no need to test for that.
 
 > **Note:** The idea of the methods is to keep going even when an error is encountered. This ensures we remove as much files as possible.
 
