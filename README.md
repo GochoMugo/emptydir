@@ -1,5 +1,7 @@
 ﻿
-# emptydir
+# emptydir [![Build Status](https://travis-ci.org/GochoMugo/emptydir.svg?branch=master)](https://travis-ci.org/GochoMugo/emptydir)
+
+
 
 You now get to delete files recursively while preserving the directories from [NodeJs][nodejs].
 
@@ -24,9 +26,11 @@ var emptydir = require('emptydir');
 * a folder on your machine
 */
 
+/*
+* errs will be an array with all the errors that occurred
+* Otherwise null on success
+*/
 emptydir.emptyDir(my_path, function (errs) {
-    /*errs will be an array with all the errors that occurred
-    Otherwise null on success*/
     if (errs) {
         errs.forEach(function (err) {
             console.log(err.path + " failed due to " + err.code);
@@ -34,19 +38,23 @@ emptydir.emptyDir(my_path, function (errs) {
     }
 });
 
+/*
+* callback is called per file(and not directory) being worked on.
+* err is null on success
+*/
 emptydir.emptyDirs(my_path, function (err, path) {
-    /*callback is called per file(and not directory) being worked on.
-    * err is null on success*/
     if (err) {
         console.log("Failed: " + path);
     }
     console.log("Success: " + path);
 });
 
-/*Synchronous. Returns an array of all the errors that occurred while
-*working on the files in the directory.
+/*
+* Synchronous. Returns an array of all the errors that occurred while
+* working on the files in the directory.
 * On success, returns an empty array. Thus it is safe to immediately
-* loop through the errors in the array.*/
+* loop through the errors in the array.
+*/
 errs = emptydir.emptyDirsSync(my_path);
 errs.forEach(function () {
     console.log(err.path + " failed due to " + err.code);
@@ -55,32 +63,37 @@ errs.forEach(function () {
 
 ## notes ##
 
-By saying working on a file, we mean to try and remove it.
+> By saying **working on a file**, we mean to try and remove it.
 
 **All** of the methods:
 
-1. If the path passed is a file, it is simply deleted. It's '**not** amust the path points to a directory.
-2. Symbolic links are not dereferenced. They are deleted equally as files.
+    1. If the path passed is a file, it is simply deleted. It's '**not** amust the path points to a directory.
+    2. Symbolic links are not dereferenced. They are deleted equally as files.
 
 Any of the **Asynchronous** methods:
 
-1. If a callback is **not** passed, the methods will complete as would have if callback was passed.
+    1. If a callback is **not** passed, the methods will complete as would have if callback was passed.
+
+<hr>
 
 **emptydir.emptyDir(path [, callback])**
 
-1. Callback is called only **once** after the working on the files is complete.
-2. On error, a list of **all** errors occurred during the recursive removal is passed to the callback.
-3. On success, error will be `null`
+    1. Callback is called only **once** after the working on the files is complete.
+    2. On error, a list of **all** errors occurred during the recursive removal is passed to the callback.
+    3. On success, error will be `null`
+
+<hr>
 
 **emptydir.emptyDirs(path [, callback])**
 
-1. The callback is called **each** time a file is worked on.
-2. **path** of the file worked on is **always** passed as the second argument to the callback on both success and error.
+    1. The callback is called **each** time a file is worked on.
+    2. **path** of the file worked on is **always** passed as the second argument to the callback on both success and error.
 
+<hr>
 
 **emptydir.emptyDirsSync(path)**
 
-1. The return value will always be an array. Thus no need to test for that.
+    1. The return value will always be an array. Thus no need to test for that.
 
 > **Note:** The idea of the methods is to keep going even when an error is encountered. This ensures we remove as much files as possible.
 
@@ -99,7 +112,7 @@ Any of the **Asynchronous** methods:
 
 [Fork][fork] this repo, hack it and send a Pull Request.
 
-If you encounter a bug, even if you could fix it yourself (*a pull request would be **better** in this case*), please create an [issue].
+If you encounter a bug, even if you could fix it yourself (*a pull request would be better in this case*), please create an [issue].
 
 Also some geek talk is appreciated at [@MUGO_GOCHO][tweet].
 
