@@ -102,7 +102,7 @@ Any of the **Asynchronous** methods:
 |Aspect|Detail|
 |------|------:|
 |version|0.0.0-alpha|
-|node|*|
+|nodejs|0.10.\*, 0.8.\*|
 |dependencies|none|
 |last updated|23rd July, 2014|
 
