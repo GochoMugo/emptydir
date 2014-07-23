@@ -54,6 +54,10 @@ function emptyDirs(path, callback) {
         }
         if (stats.isDirectory()) {
             fs.readdir(path, function (err, files) {
+                if (err) {
+                    callback(err, path);
+                    return;
+                }
                 files.forEach(function (file) {
                     file_path = Path.join(path, file);
                     emptyDirs(file_path, callback);

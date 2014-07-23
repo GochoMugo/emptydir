@@ -1,6 +1,7 @@
-﻿# emptydir #
+﻿
+# emptydir
 
-You now get to delete files recursively while preserving the directories.
+You now get to delete files recursively while preserving the directories from [NodeJs][nodejs].
 
 ## installation ##
 
@@ -16,39 +17,40 @@ If you wish to install it globally on your machine:
 
 ```js
 
-    var emptydir = require('emptydir');
+var emptydir = require('emptydir');
 
-    /* 
-    * Assuming the variable 'my_path' holds a path to
-    * a folder on your machine
-    */
+/* 
+* Assuming the variable 'my_path' holds a path to
+* a folder on your machine
+*/
 
-    emptydir.emptyDir(my_path, function (errs) {
-        /*errs will be an array with all the errors that occurred*/
-        if (errs) {
-            errs.forEach(function (err) {
-                console.log(err.path + " failed due to " + err.code);
-            });
-        }
-    });
+emptydir.emptyDir(my_path, function (errs) {
+    /*errs will be an array with all the errors that occurred
+    Otherwise null on success*/
+    if (errs) {
+        errs.forEach(function (err) {
+            console.log(err.path + " failed due to " + err.code);
+        });
+    }
+});
 
-    emptydir.emptyDirs(my_path, function (err, path) {
-        /*callback is called per file(and not directory) being worked on.
-        * err is null on success*/
-        if (err) {
-            console.log("Failed: " + path);
-        }
-        console.log("Success: " + path);
-    });
+emptydir.emptyDirs(my_path, function (err, path) {
+    /*callback is called per file(and not directory) being worked on.
+    * err is null on success*/
+    if (err) {
+        console.log("Failed: " + path);
+    }
+    console.log("Success: " + path);
+});
 
-    /*Synchronous. Returns an array of all the errors that occurred while
-    *working on the files in the directory.
-    * On success, returns an empty array. Thus it is safe to immediately
-    * loop through the errors in the array.*/
-    errs = emptydir.emptyDirsSync(my_path);
-    errs.forEach(function () {
-        console.log(err.path + " failed due to " + err.code);
-    });
+/*Synchronous. Returns an array of all the errors that occurred while
+*working on the files in the directory.
+* On success, returns an empty array. Thus it is safe to immediately
+* loop through the errors in the array.*/
+errs = emptydir.emptyDirsSync(my_path);
+errs.forEach(function () {
+    console.log(err.path + " failed due to " + err.code);
+});
 ```
 
 ## notes ##
@@ -89,13 +91,15 @@ Any of the **Asynchronous** methods:
 |version|0.0.0-alpha|
 |node|*|
 |dependencies|none|
-|last updated|21st July, 2014|
+|last updated|23rd July, 2014|
 
 <!-- > A different [version][version]?-->
 
 ## contribution ##
 
-[Fork][fork] this repo, hack it and send a Pull Request and we will get on it soon.
+[Fork][fork] this repo, hack it and send a Pull Request.
+
+If you encounter a bug, even if you could fix it yourself (*a pull request would be **better** in this case*), please create an [issue].
 
 Also some geek talk is appreciated at [@MUGO_GOCHO][tweet].
 
@@ -103,8 +107,10 @@ Also some geek talk is appreciated at [@MUGO_GOCHO][tweet].
 
 This source code is licensed under the [MIT][MIT] license.
 
+[nodejs]:https://nodejs.org "NodeJs Homepage"
 [npm]:https://npmjs.org "Node Package Manager"
-[version]:https://github.com/GochoMugo/emptydir "All Versions"
+<!--[version]:https://github.com/GochoMugo/emptydir "All Versions"-->
 [fork]:https://github.com/GochoMugo/emptydir "Fork this repo"
+[issue]:https://github.com/GochoMugo/emptydir/issues "Create an issue"
 [tweet]:https://twitter.com/MUGO_GOCHO "Tweet me"
 [MIT]:https://github.com/GochoMugo/emptydir/blob/master/LICENSE  "Read the License"
