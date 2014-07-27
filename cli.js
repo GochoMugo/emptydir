@@ -1,3 +1,5 @@
+#! /usr/bin/env node
+
 /*
 * This is the Command Line Implementation of the `emptydir` module
 *
