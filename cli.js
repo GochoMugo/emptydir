@@ -13,7 +13,6 @@
 module.exports.run = run;
 
 var emptydir = require('./emptydir'),
-       Path = require('path'),
        version =  require('./package.json').version;
 
 

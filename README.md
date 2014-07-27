@@ -123,6 +123,7 @@ $ emptydir --verbose directoryA
 #### notes ####
 
 1. If a regular file, instead of a directory, is passed to `emptydir` it will just be deleted, if possible.
+2. **Verbose** option is **unstable** and may gave you *false* errors. That is, `emptydir` may remove some files but the *commandline runner* may report them back as failed.
 
 ## version info ##
 
