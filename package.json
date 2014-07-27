@@ -1,6 +1,6 @@
 ﻿{
     "name":"emptydir",
-    "version":"0.0.0-beta",
+    "version":"0.0.0",
     "description":"recursively delete files while preserving directories",
     "homepage":"https://github.com/GochoMugo/emptydir",
     "license":"MIT",
@@ -24,5 +24,8 @@
         "url":"https://github.com/GochoMugo/emptydir.git"
     },
     "main":"emptydir.js",
-    "dependencies": {}
+    "dependencies":{},
+    "bin":{
+        "emptydir":"./cli.js"
+    }
 }

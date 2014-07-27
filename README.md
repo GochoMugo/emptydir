@@ -1,9 +1,7 @@
 ﻿
 # emptydir [![Build Status](https://travis-ci.org/GochoMugo/emptydir.svg?branch=master)](https://travis-ci.org/GochoMugo/emptydir)
 
-
-
-You now get to delete files recursively while preserving the directories from [NodeJs][nodejs].
+You now get to delete files recursively while preserving the directories from [Node.Js][nodejs] and your terminal.
 
 ## installation ##
 
@@ -15,7 +13,11 @@ If you wish to install it globally on your machine:
 
 `npm install -g emptydir`
 
+The module `emptydir` will be added in the correct *node_modules* directory and the command `emptydir` will be added to your *terminal*.
+
 ## usage ##
+
+### from Node.Js (programmatic) ###
 
 ```js
 
@@ -61,7 +63,7 @@ errs.forEach(function () {
 });
 ```
 
-## notes ##
+#### notes ####
 
 > By saying **working on a file**, we mean to try and remove it.
 
@@ -97,20 +99,45 @@ Any of the **Asynchronous** methods:
 
 > **Note:** The idea of the methods is to keep going even when an error is encountered. This ensures we remove as much files as possible.
 
+### from your terminal (commandline) ###
+
+```bash
+# output help info about available options.
+$ emptydir -h
+$ emptydir --help
+...
+# show the version number of emptydir installed.
+$ emptydir --version
+...
+# empty directoryA
+$ emptydir directoryA
+...
+# empty directoryA and directoryB
+$ emptydir directoryA directoryB
+...
+# be verbose while emptying directoryA
+$ emptydir -v directoryA
+$ emptydir --verbose directoryA
+```
+
+#### notes ####
+
+1. If a regular file, instead of a directory, is passed to `emptydir` it will just be deleted, if possible.
+
 ## version info ##
 
 |Aspect|Detail|
 |------|------:|
-|version|0.0.0-beta|
+|version|0.0.0|
 |nodejs|0.10.\*, 0.8.\*|
 |dependencies|none|
-|last updated|23rd July, 2014|
+|last updated|28th July, 2014|
 
 <!-- > A different [version][version]?-->
 
 ## contribution ##
 
-[Fork][fork] this repo, hack it and send a Pull Request.
+[Fork][fork] this repo, hack it and send a Pull Request. Please try and include a test as in the tests directory.
 
 If you encounter a bug, even if you could fix it yourself (*a pull request would be better in this case*), please create an [issue].
 

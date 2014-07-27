@@ -1,6 +1,7 @@
 var assert = require('assert'),
        fs = require('fs'),
-       emptydir = require('emptydir');
+       emptydir = require('../emptydir'),
+       cli = require('../cli');
 
 var test_folder = './test';
 var dirs = [
@@ -53,10 +54,11 @@ describe('emptyDir', function () {
 
 
 describe('emptyDirs', function () {
-    it('should be called per file and always pass path', function (done) {
+    it('should be called per file and always pass path, no error should be passed to callback here', function (done) {
         var calls = 0;
         emptydir.emptyDirs(test_folder, function(err, path) {
             calls++;
+            assert.equal(null, err, 'some error was passed');
             assert(path, 'path not passed to callback');
             if (calls === 3) done();
         });
@@ -78,6 +80,34 @@ describe('emptyDirsSync', function () {
     it('should return an array with one error', function () {
         errs = emptydir.emptyDirsSync(super_folder);
         assert.equal(1, errs.length);
+    });
+});
+
+describe('Command Line Runner', function () {
+    it('should realize missing operand', function () {
+        missing_operand = cli.run(['node', 'emptydir'], {missing_operand: 0});
+        assert.equal(0, missing_operand, 'did not realize missing operand');
+        missing_operand = cli.run(['node', 'emptydir', '--help'], {missing_operand: 0});
+        assert.equal(0, missing_operand, 'did not realize missing operand');
+    });
+    it('should show help', function () {
+        help_info = cli.run(['node', 'emptydir', '--help'], '', {help_info: 0});
+        assert.equal(0, help_info, 'did not get help');
+    });
+    it('should show version info', function () {
+        version_info = cli.run(['node', 'emptydir', '--version'], {version_info: 0});
+        assert.equal(0, version_info, 'did not show version info');
+    });
+    it('should realize invalid option', function () {
+        invalid_option = cli.run(['node', 'emptydir', '-ghj'], {invalid_option: 0});
+        assert.equal(0, invalid_option, 'did not catch invalid option');
+    });
+    it('should continue even when non-existent directories is given', function () {
+        assert.doesNotThrow(
+            function () {
+                cli.run(['node', 'emptydir', 'non-existing-dir']);
+            },
+            "exception raised when non-existant directories encountered in cli");
     });
 });
 
